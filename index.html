@@ -97,7 +97,7 @@
                 inputElement.style.display = "none"; // Скрываем ввод
 
                 let lines = texts[lang] || texts["ru"]; // Если язык нераспознан, выбираем русский
-                
+               
                 consoleElement.innerHTML += lang + "\n"; // Отображаем ввод пользователя
 
                 let index = 0;
@@ -105,6 +105,7 @@
                 function printLine() {
                     if (index < lines.length) {
                         const line = document.createElement("div");
+                        line.innerHTML = lines[index]; 
                         line.textContent = lines[index];
                         consoleElement.appendChild(line);
                         index++;
