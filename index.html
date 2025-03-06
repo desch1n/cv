@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Консольная страница</title>
+    <style>
+        body {
+            background-color: black;
+            color: cyan; /* Синий текст */
+            font-family: monospace;
+            padding: 20px;
+            font-size: 18px;
+        }
+        #console {
+            white-space: pre-line;
+        }
+        .cursor::after {
+            content: "_";
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        input {
+            background: black;
+            color: cyan;
+            font-family: monospace;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="console"></div>
+    <input id="input" type="text" autofocus>
+
+    <script>
+        const consoleElement = document.getElementById("console");
+        const inputElement = document.getElementById("input");
+
+        // Тексты для разных языков
+        const texts = {
+            ru: [
+                "Добро пожаловать в систему...",
+                "Инициализация...",
+                "Загрузка данных...",
+                "Соединение установлено!",
+                "Готово к работе."
+            ],
+            en: [
+                "Welcome to the system...",
+                "Initializing...",
+                "Loading data...",
+                "Connection established!",
+                "Ready to work."
+            ]
+        };
+
+        // Отображаем приглашение выбрать язык
+        consoleElement.innerHTML = "Выберите язык (ru/en) / Choose a language (ru/en):\n> ";
+
+        inputElement.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                let lang = inputElement.value.toLowerCase();
+                inputElement.style.display = "none"; // Скрываем ввод
+
+                let lines = texts[lang] || texts["ru"]; // Если язык нераспознан, выбираем русский
+                
+                consoleElement.innerHTML += lang + "\n"; // Отображаем ввод пользователя
+
+                let index = 0;
+
+                function printLine() {
+                    if (index < lines.length) {
+                        const line = document.createElement("div");
+                        line.textContent = lines[index];
+                        consoleElement.appendChild(line);
+                        index++;
+                        setTimeout(printLine, 1000);
+                    } else {
+                        const cursor = document.createElement("span");
+                        cursor.classList.add("cursor");
+                        consoleElement.appendChild(cursor);
+                    }
+                }
+
+                setTimeout(printLine, 500);
+            }
+        });
+    </script>
+</body>
+</html>
