@@ -31,6 +31,10 @@
             outline: none;
             width: 100px;
         }
+        a {
+            color: cyan;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +58,7 @@
                 "Welcome to the system...",
                 "Initializing...",
                 "Loading data...",
-                "Connection established!",
+                'Connection established! <a href="https://1one.de" target="_blank">Go to site</a>',
                 "Ready to work."
             ],
             de: [
@@ -62,7 +66,7 @@
                 "Urbacher Weg 3",
                 "51149 Köln",
                 "Nr: 017683347000",
-                "E-Mail: deschin@live.de",
+                'E-Mail: <a href="mailto:deschin@live.de">deschin@live.de</a>',
                 "####################################",
                 "LEBENSLAUF",
                 "Persönliche Daten",  
@@ -74,16 +78,14 @@
                 "01/2022-bis heute",
                 "Senior Anwendungsentwickler, benuta GmbH", 
                 "05/2014-12/2021",
-                "System Engeneer, Monolith West GmbH", 
-                
-"Bergheim, Deutschland",
-"ERP Development and Integration (SAGE Office Line 100 / SAGE x3)", 
-"SQL Development (MS SQL 2008R2/2014/2016, MySQL)",
-"BI Development (Qlik View/ SSRS)",
-"Netzwerkarchitektur: Ring, Brücke, WLAN (Ubiquity/Edge), VPN/VoIP Lösungen (3CX/Snom/Yealink/MS Teams/Ribbon)", 
-"Microsoft 365 Architektur & Integration",
-"3rd Level Support",
-
+                "System Engineer, Monolith West GmbH", 
+                "Bergheim, Deutschland",
+                "ERP Development and Integration (SAGE Office Line 100 / SAGE x3)", 
+                "SQL Development (MS SQL 2008R2/2014/2016, MySQL)",
+                "BI Development (Qlik View/ SSRS)",
+                "Netzwerkarchitektur: Ring, Brücke, WLAN (Ubiquity/Edge), VPN/VoIP Lösungen (3CX/Snom/Yealink/MS Teams/Ribbon)", 
+                "Microsoft 365 Architektur & Integration",
+                "3rd Level Support",
             ]
         };
 
@@ -105,8 +107,7 @@
                 function printLine() {
                     if (index < lines.length) {
                         const line = document.createElement("div");
-                        line.innerHTML = lines[index]; 
-                        line.textContent = lines[index];
+                        line.innerHTML = lines[index]; // Используем innerHTML, чтобы работали <a> ссылки
                         consoleElement.appendChild(line);
                         index++;
                         setTimeout(printLine, 1000);
@@ -122,4 +123,4 @@
         });
     </script>
 </body>
-</html>
+</html> 
